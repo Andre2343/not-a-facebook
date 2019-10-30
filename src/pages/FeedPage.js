@@ -1,36 +1,34 @@
-import React, { Component } from 'react';
+/* eslint-disable no-shadow */
+/* eslint-disable no-undef */
+import React, { useState } from 'react';
 import Feed from '../components/Feed';
 import PostForm from '../components/PostForm';
 import PostsModel from '../modules/posts';
 // import posts from '../__mocks__/posts';
 
-class FeedPage extends Component {
-  state = {
-    posts: PostsModel.get(),
-  }
+function FeedPage() {
+  const [posts] = useState(PostsModel.get());
+
 
   handleAddPost = (post) => {
     PostsModel.add(post);
     const posts = PostsModel.get();
-    this.setState({ posts });
-  }
+    setState({ posts });
+  };
 
   handleRemovePost = (post) => {
     PostsModel.remove(post);
     const posts = PostsModel.get();
-    this.setState({ posts });
-  }
+    setState({ posts });
+  };
 
-  render() {
-    const { posts } = this.state;
-    return (
-      <>
-        <PostForm handleAddPost={this.handleAddPost} />
-        <Feed posts={posts} handleRemovePost={this.handleRemovePost} />
-      </>
+  return (
+    <>
+      <PostForm handleAddPost={handleAddPost} />
+      <Feed posts={posts} handleRemovePost={handleRemovePost} />
+    </>
 
-    );
-  }
+  );
 }
 
 export default FeedPage;
